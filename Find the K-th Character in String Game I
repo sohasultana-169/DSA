@@ -1,0 +1,24 @@
+class Solution {
+public:
+    char kthCharacter(int k) {
+        string word = "a";
+        while(word.size() < k){
+            string newWord = stringGame(word);
+            word = newWord;
+        }
+        return word[k-1];
+    }
+
+    string stringGame(string &word){
+        string dummy = word;
+        for(char &c : dummy){
+            if(c == 'z'){
+                c = 'a';
+            }else{
+                c = c + 1;
+            }
+        }
+        
+        return word+dummy;
+    }
+};
