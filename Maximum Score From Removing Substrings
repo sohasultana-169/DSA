@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maximumGain(string s, int x, int y) {
+        if(s.length() == 1) return 0;
+        int x_points = 0,y_points = 0;
+        if(x >= y){
+            x_points = remove_substrings(s,"ab",x);
+            y_points = remove_substrings(s,"ba",y);
+        }else{
+            y_points = remove_substrings(s,"ba",y);
+            x_points = remove_substrings(s,"ab",x);
+        }
+
+        return x_points + y_points;
+    }
+
+    int remove_substrings(string &s, const string &target, int points) {
+        vector<char> stack;
+        int score = 0;
+
+        for (char ch : s) {
+            if (!stack.empty() && stack.back() == target[0] && ch == target[1]) {
+                stack.pop_back(); // matched target[0], now match target[1]
+                score += points;
+            } else {
+                stack.push_back(ch);
+            }
+        }
+
+        // Reconstruct string efficiently
+        s = string(stack.begin(), stack.end());
+        return score;
+    }
+};
