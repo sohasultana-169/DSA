@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxSum(vector<int>& nums) {
+        unordered_map<int,int> freq;
+        int result = 0;
+        int largest_negative = INT_MIN;
+        for(int num : nums){
+            freq[num]++;
+            if(num <= 0) largest_negative = max(largest_negative,num);
+            if(freq[num] == 1 && num > 0){
+                result += num;
+            } 
+        }
+
+        if(result == 0){
+            result = largest_negative;
+        }
+
+        return result;
+    }
+
+};
