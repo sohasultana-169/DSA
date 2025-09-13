@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        // code here
+        int dup = 0,miss = 0;
+        int n = arr.size();
+        vector<bool> visited(n+1,false);
+        for(int num : arr){
+            if(!visited[num]){
+                visited[num] = true;
+            }else{
+                dup = num;
+            }
+        }
+        
+        for(int i=1;i<=n;++i){
+            if(!visited[i]){
+                miss = i;
+                break;
+            }
+        }
+        
+        return {dup,miss};
+    }
+};
