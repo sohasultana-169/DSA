@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        int n = s.size();
+        if(n != goal.size()) return false;
+
+        for(int i = 0;i < n;++i){
+            char t = s.back();
+            s.pop_back();
+            s = t + s;
+
+            if(s == goal) return true;
+        }
+
+        return false;
+    }
+};
+
+
+// class Solution {
+// public:
+//     bool rotateString(string s, string goal) {
+//         if(s.size()!=goal.size()) return false;
+//         string doubleds= s+s;
+//         return doubleds.find(goal) !=string::npos;
+//     }
+// };
