@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int numberOfSpecialChars(string word) {
+       
+        vector<bool> lower(26,false);
+        vector<bool> upper(26,false);
+
+        for(char w : word){
+            if(int(w) > 96){
+                int temp = w - 'a';
+                lower[temp] = true;
+            }else{
+                int temp = w - 'A';
+                upper[temp] = true;
+            }
+        }
+
+        int result = 0;
+        for(int i=0;i<26;++i){
+            if(lower[i]  && upper[i]) result++;
+        }
+
+        return result;
+    }
+};
